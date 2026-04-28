@@ -1,0 +1,34 @@
+{{!--
+  No Way Out! - 5e
+  Application Template Placeholder
+
+  This is a starter template for ApplicationV2-based sheets.
+  Replace this content with your actual application layout.
+
+  Usage in ApplicationV2:
+    static DEFAULT_OPTIONS = {
+      classes: ["nwo", "app"],
+      position: { width: 400, height: 300 },
+      window: { title: "NWO.AppTitle" },
+    };
+    _renderHTML(context) {
+      return foundry.applications.handlebars.renderTemplate(
+        "modules/no-way-out-5e/templates/apps/placeholder.hbs", context
+      );
+    }
+--}}
+<div class="nwo-app">
+  <header class="nwo-app-header">
+    <h2>{{localize "NWO.Apps.Placeholder.Title"}}</h2>
+  </header>
+
+  <section class="nwo-app-body">
+    <p>{{localize "NWO.Apps.Placeholder.Description"}}</p>
+  </section>
+
+  <footer class="nwo-app-footer">
+    <button type="button" class="nwo-app-close" data-action="close">
+      {{localize "NWO.Close"}}
+    </button>
+  </footer>
+</div>

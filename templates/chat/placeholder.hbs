@@ -1,0 +1,38 @@
+{{!--
+  No Way Out! - 5e
+  Chat Message Template Placeholder
+
+  Starter template for custom chat messages created by the module.
+  Use this as a base for rendering chat cards for abilities, effects, etc.
+
+  Usage:
+    const html = await foundry.applications.handlebars.renderTemplate(
+      "modules/no-way-out-5e/templates/chat/placeholder.hbs", { title, description, ... }
+    );
+    ChatMessage.create({ content: html, ... });
+--}}
+<div class="nwo-chat-card">
+  <header class="nwo-chat-header">
+    <h3>{{title}}</h3>
+  </header>
+
+  <section class="nwo-chat-body">
+    <p>{{description}}</p>
+    {{#if details}}
+    <div class="nwo-chat-details">
+      {{#each details}}
+      <div class="nwo-chat-detail">
+        <span class="label">{{this.label}}:</span>
+        <span class="value">{{this.value}}</span>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </section>
+
+  <footer class="nwo-chat-footer">
+    {{#if flavor}}
+    <span class="nwo-chat-flavor">{{flavor}}</span>
+    {{/if}}
+  </footer>
+</div>

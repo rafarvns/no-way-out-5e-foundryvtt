@@ -1,0 +1,300 @@
+/* ========================================================================== */
+/*  No Way Out! - 5e — Module Stylesheet                                      */
+/*  FoundryVTT v14                                                            */
+/* ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/*  CSS Custom Properties (Design Tokens)                                     */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  /* --- Brand Colors --- */
+  --nwo-color-primary: #8b0000;
+  --nwo-color-primary-hover: #a50000;
+  --nwo-color-secondary: #2c2c2c;
+  --nwo-color-accent: #c9a227;
+
+  /* --- Semantic Colors --- */
+  --nwo-color-success: #2e7d32;
+  --nwo-color-warning: #f57f17;
+  --nwo-color-danger: #c62828;
+  --nwo-color-info: #1565c0;
+
+  /* --- Neutral Colors --- */
+  --nwo-color-bg: #1a1a1a;
+  --nwo-color-bg-alt: #2a2a2a;
+  --nwo-color-surface: #333333;
+  --nwo-color-text: #e0e0e0;
+  --nwo-color-text-muted: #999999;
+  --nwo-color-border: #444444;
+
+  /* --- Typography --- */
+  --nwo-font-primary: "Roboto", sans-serif;
+  --nwo-font-secondary: "Roboto Condensed", sans-serif;
+  --nwo-font-heading: "Roboto Slab", serif;
+
+  /* --- Spacing --- */
+  --nwo-space-xs: 2px;
+  --nwo-space-sm: 4px;
+  --nwo-space-md: 8px;
+  --nwo-space-lg: 16px;
+  --nwo-space-xl: 24px;
+
+  /* --- Borders --- */
+  --nwo-border-radius: 4px;
+  --nwo-border-width: 1px;
+
+  /* --- Shadows --- */
+  --nwo-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --nwo-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --nwo-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base Module Styles                                                        */
+/* -------------------------------------------------------------------------- */
+
+.nwo {
+  font-family: var(--nwo-font-primary);
+  color: var(--nwo-color-text);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Application Sheets                                                        */
+/* -------------------------------------------------------------------------- */
+
+.nwo-app {
+  background: var(--nwo-color-bg);
+  border: var(--nwo-border-width) solid var(--nwo-color-border);
+  border-radius: var(--nwo-border-radius);
+  padding: var(--nwo-space-lg);
+}
+
+.nwo-app-header {
+  border-bottom: 2px solid var(--nwo-color-primary);
+  margin-bottom: var(--nwo-space-lg);
+  padding-bottom: var(--nwo-space-md);
+}
+
+.nwo-app-header h2 {
+  font-family: var(--nwo-font-heading);
+  color: var(--nwo-color-primary);
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.nwo-app-body {
+  padding: var(--nwo-space-md) 0;
+}
+
+.nwo-app-footer {
+  border-top: 1px solid var(--nwo-color-border);
+  margin-top: var(--nwo-space-lg);
+  padding-top: var(--nwo-space-md);
+  text-align: right;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Buttons                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.nwo button,
+.nwo-app button {
+  background: var(--nwo-color-primary);
+  border: none;
+  border-radius: var(--nwo-border-radius);
+  color: var(--nwo-color-text);
+  cursor: pointer;
+  font-family: var(--nwo-font-secondary);
+  padding: var(--nwo-space-sm) var(--nwo-space-lg);
+  transition: background 0.2s ease;
+}
+
+.nwo button:hover,
+.nwo-app button:hover {
+  background: var(--nwo-color-primary-hover);
+}
+
+.nwo button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Chat Cards                                                                */
+/* -------------------------------------------------------------------------- */
+
+.nwo-chat-card {
+  background: var(--nwo-color-bg);
+  border: 1px solid var(--nwo-color-border);
+  border-left: 4px solid var(--nwo-color-primary);
+  border-radius: var(--nwo-border-radius);
+  padding: var(--nwo-space-md);
+  margin: var(--nwo-space-sm) 0;
+}
+
+.nwo-chat-header h3 {
+  font-family: var(--nwo-font-heading);
+  color: var(--nwo-color-primary);
+  margin: 0 0 var(--nwo-space-sm) 0;
+  font-size: 1.1em;
+}
+
+.nwo-chat-body p {
+  margin: 0 0 var(--nwo-space-sm) 0;
+}
+
+.nwo-chat-details {
+  background: var(--nwo-color-bg-alt);
+  border-radius: var(--nwo-border-radius);
+  padding: var(--nwo-space-sm) var(--nwo-space-md);
+  margin-top: var(--nwo-space-md);
+}
+
+.nwo-chat-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--nwo-space-xs) 0;
+}
+
+.nwo-chat-detail .label {
+  color: var(--nwo-color-text-muted);
+  font-family: var(--nwo-font-secondary);
+}
+
+.nwo-chat-detail .value {
+  font-weight: bold;
+}
+
+.nwo-chat-footer {
+  margin-top: var(--nwo-space-md);
+  font-style: italic;
+  color: var(--nwo-color-text-muted);
+  font-size: 0.85em;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Shared Components                                                         */
+/* -------------------------------------------------------------------------- */
+
+.nwo-shared {
+  background: var(--nwo-color-surface);
+  border: 1px solid var(--nwo-color-border);
+  border-radius: var(--nwo-border-radius);
+  padding: var(--nwo-space-sm) var(--nwo-space-md);
+  margin: var(--nwo-space-sm) 0;
+}
+
+.nwo-shared-label {
+  color: var(--nwo-color-text-muted);
+  font-family: var(--nwo-font-secondary);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nwo-shared-content {
+  display: flex;
+  align-items: center;
+  gap: var(--nwo-space-md);
+}
+
+.nwo-shared-value {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.nwo-shared-icon {
+  width: 24px;
+  height: 24px;
+  border: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Welcome Message                                                           */
+/* -------------------------------------------------------------------------- */
+
+.nwo-welcome {
+  background: linear-gradient(135deg, var(--nwo-color-bg) 0%, var(--nwo-color-bg-alt) 100%);
+  border: 1px solid var(--nwo-color-primary);
+  border-radius: var(--nwo-border-radius);
+  padding: var(--nwo-space-lg);
+}
+
+.nwo-welcome h2 {
+  font-family: var(--nwo-font-heading);
+  color: var(--nwo-color-primary);
+  margin: 0 0 var(--nwo-space-md) 0;
+}
+
+.nwo-welcome p {
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Utility Classes                                                           */
+/* -------------------------------------------------------------------------- */
+
+.nwo-flex { display: flex; }
+.nwo-flex-col { display: flex; flex-direction: column; }
+.nwo-flex-center { display: flex; align-items: center; justify-content: center; }
+.nwo-gap-sm { gap: var(--nwo-space-sm); }
+.nwo-gap-md { gap: var(--nwo-space-md); }
+.nwo-gap-lg { gap: var(--nwo-space-lg); }
+.nwo-text-muted { color: var(--nwo-color-text-muted); }
+.nwo-text-danger { color: var(--nwo-color-danger); }
+.nwo-text-success { color: var(--nwo-color-success); }
+.nwo-text-warning { color: var(--nwo-color-warning); }
+.nwo-text-center { text-align: center; }
+.nwo-mt-sm { margin-top: var(--nwo-space-sm); }
+.nwo-mt-md { margin-top: var(--nwo-space-md); }
+
+/* -------------------------------------------------------------------------- */
+/*  Equipment Hidden Fields (GM-Only)                                         */
+/* -------------------------------------------------------------------------- */
+
+.nwo-hidden-fields {
+  border: 1px solid var(--nwo-color-primary);
+  border-radius: var(--nwo-border-radius);
+  margin-top: var(--nwo-space-md);
+  padding: var(--nwo-space-sm) var(--nwo-space-md);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 0, 0, 0.05) 0%,
+    rgba(42, 42, 42, 0.3) 100%
+  );
+}
+
+.nwo-hidden-fields > legend {
+  color: var(--nwo-color-primary);
+  font-family: var(--nwo-font-heading);
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 0 var(--nwo-space-sm);
+}
+
+.nwo-hidden-fields .form-group.split-group {
+  align-items: flex-start;
+}
+
+.nwo-hidden-fields .form-fields {
+  gap: var(--nwo-space-lg);
+}
+
+.nwo-hidden-fields .label-top label {
+  color: var(--nwo-color-text-muted);
+  font-family: var(--nwo-font-secondary);
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.nwo-hidden-fields input[type="number"] {
+  width: 5em;
+  text-align: center;
+}
+.nwo-mt-lg { margin-top: var(--nwo-space-lg); }
+.nwo-mb-sm { margin-bottom: var(--nwo-space-sm); }
+.nwo-mb-md { margin-bottom: var(--nwo-space-md); }
+.nwo-mb-lg { margin-bottom: var(--nwo-space-lg); }

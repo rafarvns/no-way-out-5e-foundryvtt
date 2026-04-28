@@ -1,0 +1,77 @@
+{
+  "NWO": {
+    "ModuleLabel": "No Way Out! - 5e",
+
+    "Welcome": {
+      "Title": "Bem-vindo ao No Way Out! - 5e",
+      "Message": "Este módulo torna D&D 5e mais mortífero e desafiador. Configure as opções no painel de Configurações do Módulo."
+    },
+
+    "Close": "Fechar",
+    "Save": "Salvar",
+    "Cancel": "Cancelar",
+    "Confirm": "Confirmar",
+    "Delete": "Excluir",
+    "Edit": "Editar",
+    "Enable": "Ativar",
+    "Disable": "Desativar",
+    "Yes": "Sim",
+    "No": "Não",
+
+    "Settings": {
+      "Enabled": {
+        "Name": "Ativar Módulo",
+        "Hint": "Ativa ou desativa todos os recursos do No Way Out! globalmente."
+      },
+      "Debug": {
+        "Name": "Modo Debug",
+        "Hint": "Ativa logs detalhados no console para desenvolvimento e solução de problemas."
+      }
+    },
+
+    "Keybindings": {
+      "OpenPanel": {
+        "Name": "Abrir Painel do Módulo",
+        "Hint": "Abre o painel principal de configuração do No Way Out!."
+      }
+    },
+
+    "Apps": {
+      "Placeholder": {
+        "Title": "Aplicação No Way Out!",
+        "Description": "Este é um modelo de aplicação placeholder. Substitua pelo seu conteúdo personalizado."
+      }
+    },
+
+    "Chat": {
+      "Placeholder": {
+        "Title": "Chat No Way Out!",
+        "Description": "Este é um modelo de card de chat placeholder."
+      }
+    },
+
+    "Notifications": {
+      "Enabled": "Módulo No Way Out! ativado.",
+      "Disabled": "Módulo No Way Out! desativado.",
+      "Error": {
+        "Generic": "Ocorreu um erro no No Way Out!.",
+        "NotEnabled": "O módulo No Way Out! não está ativado."
+      }
+    },
+
+    "Fields": {
+      "Hardness": {
+        "Label": "Dureza",
+        "Hint": "Classificação de dureza do material (0–2). Padrão: 1."
+      },
+      "Durability": {
+        "Label": "Durabilidade",
+        "Hint": "Classificação de durabilidade do item (0–10). Padrão: 10."
+      }
+    },
+
+    "Equipment": {
+      "HiddenFields": "No Way Out — Campos Ocultos"
+    }
+  }
+}

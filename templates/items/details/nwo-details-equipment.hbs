@@ -1,0 +1,28 @@
+{{!--
+  No Way Out! - 5e
+  Equipment Details — Hidden Fields Partial
+
+  Renders Hardness and Durability fields for equipment items.
+  This section is only visible to GM users.
+--}}
+{{#if isGM}}
+<fieldset class="nwo-hidden-fields">
+    <legend>{{ localize "NWO.Equipment.HiddenFields" }}</legend>
+
+    <div class="form-group split-group">
+        <label>{{ localize "NWO.Equipment.HiddenFields" }}</label>
+        <div class="form-fields">
+
+            {{!-- Hardness --}}
+            {{ formField fields.hardness value=source.hardness step=0.1
+                         label="NWO.Fields.Hardness.Label" localize=true
+                         classes="label-top" rootId=partId }}
+
+            {{!-- Durability --}}
+            {{ formField fields.durability value=source.durability step=0.1
+                         label="NWO.Fields.Durability.Label" localize=true
+                         classes="label-top" rootId=partId }}
+        </div>
+    </div>
+</fieldset>
+{{/if}}

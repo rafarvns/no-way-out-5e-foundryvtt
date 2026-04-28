@@ -14,7 +14,7 @@ yarn.lock
 pnpm-lock.yaml
 
 # === FoundryVTT ===
-packs/pack-1/
+packs/
 *.db
 foundry/
 data/
@@ -50,4 +50,5 @@ $RECYCLE.BIN/
 *.temp
 *.bak
 *.cache
+*.log
 *.log

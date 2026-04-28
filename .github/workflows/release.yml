@@ -1,0 +1,114 @@
+name: Release Module
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Read version from package.json
+        id: pkg
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check if tag already exists
+        id: check_tag
+        continue-on-error: true
+        run: |
+          git fetch --tags
+          git tag -l "${{ steps.pkg.outputs.tag }}"
+
+      - name: Skip if release already exists
+        if: steps.check_tag.outcome == 'success'
+        run: |
+          TAG="${{ steps.pkg.outputs.tag }}"
+          if git tag -l "$TAG" | grep -q "$TAG"; then
+            echo "⚠️ Tag $TAG already exists. Skipping release."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create staging directory
+        if: steps.check_tag.outcome == 'success'
+        run: |
+          mkdir -p staging
+
+      - name: Copy module files to staging
+        if: steps.check_tag.outcome == 'success'
+        run: |
+          cp module.json staging/
+          cp -r module staging/
+          cp -r styles staging/
+          cp -r lang staging/
+          cp -r templates staging/
+
+      - name: Update module.json with release version and URLs
+        if: steps.check_tag.outcome == 'success'
+        run: |
+          VERSION="${{ steps.pkg.outputs.version }}"
+          REPO="rafarvns/no-way-out"
+          DOWNLOAD_URL="https://github.com/${REPO}/releases/latest/download/no-way-out-5e.zip"
+          MANIFEST_URL="https://github.com/${REPO}/releases/latest/download/module.json"
+
+          jq --arg ver "$VERSION" \
+             --arg download "$DOWNLOAD_URL" \
+             --arg manifest "$MANIFEST_URL" \
+             '.version = $ver | .download = $download | .manifest = $manifest' \
+             staging/module.json > staging/module.json.tmp
+          mv staging/module.json.tmp staging/module.json
+
+      - name: Create zip archive
+        if: steps.check_tag.outcome == 'success'
+        run: |
+          cd staging
+          zip -r ../no-way-out-5e.zip .
+          cd ..
+
+      - name: Generate changelog
+        if: steps.check_tag.outcome == 'success'
+        id: changelog
+        run: |
+          # Get the previous tag, if any
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -n "$PREV_TAG" ]; then
+            CHANGELOG=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges)
+          else
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" --no-merges -20)
+          fi
+          echo "changelog<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$CHANGELOG" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        if: steps.check_tag.outcome == 'success'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.pkg.outputs.tag }}
+          name: "Release ${{ steps.pkg.outputs.tag }}"
+          body: |
+            ## What's Changed
+
+            ${{ steps.changelog.outputs.changelog }}
+
+            ---
+
+            **Installation**: In FoundryVTT, use the following manifest URL:
+            \`https://github.com/rafarvns/no-way-out/releases/latest/download/module.json\`
+          files: |
+            no-way-out-5e.zip
+            staging/module.json
+          draft: false
+          prerelease: false

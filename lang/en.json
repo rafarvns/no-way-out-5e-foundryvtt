@@ -1,0 +1,77 @@
+{
+  "NWO": {
+    "ModuleLabel": "No Way Out! - 5e",
+
+    "Welcome": {
+      "Title": "Welcome to No Way Out! - 5e",
+      "Message": "This module makes D&D 5e more lethal and challenging. Configure settings in the Module Settings panel."
+    },
+
+    "Close": "Close",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "Delete": "Delete",
+    "Edit": "Edit",
+    "Enable": "Enable",
+    "Disable": "Disable",
+    "Yes": "Yes",
+    "No": "No",
+
+    "Settings": {
+      "Enabled": {
+        "Name": "Enable Module",
+        "Hint": "Enable or disable all No Way Out! features globally."
+      },
+      "Debug": {
+        "Name": "Debug Mode",
+        "Hint": "Enable verbose console logging for development and troubleshooting."
+      }
+    },
+
+    "Keybindings": {
+      "OpenPanel": {
+        "Name": "Open Module Panel",
+        "Hint": "Opens the main No Way Out! configuration panel."
+      }
+    },
+
+    "Apps": {
+      "Placeholder": {
+        "Title": "No Way Out! Application",
+        "Description": "This is a placeholder application template. Replace with your custom content."
+      }
+    },
+
+    "Chat": {
+      "Placeholder": {
+        "Title": "No Way Out! Chat",
+        "Description": "This is a placeholder chat card template."
+      }
+    },
+
+    "Notifications": {
+      "Enabled": "No Way Out! module enabled.",
+      "Disabled": "No Way Out! module disabled.",
+      "Error": {
+        "Generic": "An error occurred in No Way Out!.",
+        "NotEnabled": "No Way Out! module is not enabled."
+      }
+    },
+
+    "Fields": {
+      "Hardness": {
+        "Label": "Hardness",
+        "Hint": "Material hardness rating (0–2). Default: 1."
+      },
+      "Durability": {
+        "Label": "Durability",
+        "Hint": "Item durability rating (0–10). Default: 10."
+      }
+    },
+
+    "Equipment": {
+      "HiddenFields": "No Way Out — Hidden Fields"
+    }
+  }
+}

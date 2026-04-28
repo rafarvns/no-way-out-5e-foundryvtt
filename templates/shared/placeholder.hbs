@@ -1,0 +1,24 @@
+{{!--
+  No Way Out! - 5e
+  Shared / Reusable Template Placeholder
+
+  Starter template for reusable partials that can be included
+  in other templates via {{> "modules/no-way-out-5e/templates/shared/placeholder.hbs"}}.
+
+  Common uses: stat blocks, condition indicators, resource bars, etc.
+--}}
+<div class="nwo-shared" data-type="{{type}}">
+  {{#if label}}
+  <label class="nwo-shared-label">{{label}}</label>
+  {{/if}}
+
+  <div class="nwo-shared-content">
+    {{#if value}}
+    <span class="nwo-shared-value">{{value}}</span>
+    {{/if}}
+
+    {{#if icon}}
+    <img class="nwo-shared-icon" src="{{icon}}" alt="{{label}}">
+    {{/if}}
+  </div>
+</div>
