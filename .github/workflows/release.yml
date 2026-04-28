@@ -59,7 +59,7 @@ jobs:
         if: steps.check_tag.outcome == 'success'
         run: |
           VERSION="${{ steps.pkg.outputs.version }}"
-          REPO="rafarvns/no-way-out"
+          REPO="${{ github.repository }}"
           DOWNLOAD_URL="https://github.com/${REPO}/releases/latest/download/no-way-out-5e.zip"
           MANIFEST_URL="https://github.com/${REPO}/releases/latest/download/module.json"
 
@@ -106,7 +106,7 @@ jobs:
             ---
 
             **Installation**: In FoundryVTT, use the following manifest URL:
-            \`https://github.com/rafarvns/no-way-out/releases/latest/download/module.json\`
+            `https://github.com/${{ github.repository }}/releases/latest/download/module.json`
           files: |
             no-way-out-5e.zip
             staging/module.json
