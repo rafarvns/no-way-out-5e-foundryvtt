@@ -1,0 +1,1 @@
+Este modulo do foundry vtt implementa features homebrew para tornar a 5ª edição mais mortífera e difícil.

@@ -1,0 +1,48 @@
+{
+  "id": "no-way-out-5e",
+  "title": "No Way Out! - 5e",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "flamolino",
+      "email": "rafarvns@gmail.com",
+      "url": "https://github.com/rafarvns",
+      "discord": "flamolino~",
+      "flags": {}
+    }
+  ],
+  "flags": {
+    "canUpload": true
+  },
+  "packs": [
+    {
+      "name": "pack-1",
+      "label": "Pack 1",
+      "path": "packs/pack-1",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {
+        "_placeholder": true
+      },
+      "system": "dnd5e"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  },
+  "action": "manageModule",
+  "description": ""
+}

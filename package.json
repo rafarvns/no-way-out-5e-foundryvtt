@@ -1,0 +1,16 @@
+{
+  "name": "no-way-out",
+  "version": "1.0.0",
+  "description": "Este modulo do foundry vtt implementa features homebrew para tornar a 5ª edição mais mortífera e difícil.",
+  "main": "scrape-foundry-api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "jsdom": "^29.1.0"
+  }
+}
