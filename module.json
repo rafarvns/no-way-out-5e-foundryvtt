@@ -2,7 +2,7 @@
   "id": "no-way-out-5e",
   "title": "No Way Out! - 5e",
   "description": "Homebrew module that makes D&D 5e more lethal and challenging. Modified rules, enhanced danger mechanics, and deadly encounters.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": {
     "minimum": "14",
     "verified": "14"

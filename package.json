@@ -1,6 +1,6 @@
 {
   "name": "no-way-out-5e",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "FoundryVTT v14 module — Homebrew rules to make D&D 5e more lethal and challenging.",
   "main": "module/no-way-out.mjs",
   "type": "module",
