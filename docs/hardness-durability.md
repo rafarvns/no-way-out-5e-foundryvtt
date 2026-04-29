@@ -65,10 +65,19 @@ Legacy equipment items that do not have `hardness` or `durability` in their sour
 ### Viewing & Editing
 
 1. Open any **Equipment** item sheet as a GM.
-2. Navigate to the **Details** tab.
-3. At the bottom of the details section, you will see a fieldset labeled **"No Way Out — Hidden Fields"** (or **"No Way Out — Campos Ocultos"** in Portuguese).
+2. Navigate to the **Description** tab.
+3. At the top of the description section, you will see a fieldset labeled **"No Way Out — Condition"** (or **"No Way Out — Condição"** in Portuguese).
 4. Edit the **Hardness** and **Durability** values as needed. Values accept decimal numbers (e.g., `0.5`, `1.7`, `8.3`).
 5. Changes are saved automatically (submit-on-change) or when you click the sheet's save button.
+
+### Player View
+
+Players see a **read-only condition indicator** at the top of the Description tab instead of editable fields. The indicator shows:
+
+- A **shield icon** with a color-coded border
+- A **descriptive text** based on the durability value (e.g., "Pristine — No visible wear", "Damaged — Structural integrity compromised")
+
+Players **cannot** see the exact hardness or durability numbers — only the qualitative condition description.
 
 ### Accessing Values Programmatically
 
@@ -87,7 +96,17 @@ await item.update({
 
 ### Player Visibility
 
-Players **cannot** see the hidden fields section. The template uses `{{#if isGM}}` to conditionally render the fieldset, ensuring that only GM users have access to these values. Players see the standard equipment sheet without any modifications.
+Players **cannot** see or edit the hardness and durability numeric fields. Instead, they see a color-coded condition indicator with a descriptive text that maps the durability value to a qualitative state:
+
+| Durability | What Players See |
+|---|---|
+| 10 | 🟢 Pristine — No visible wear |
+| 9.5 – <10 | 🟢 Light scratches — Minor cosmetic damage |
+| 8 – <9.5 | 🟡 Worn — Showing signs of use |
+| 6 – <8 | 🟠 Damaged — Structural integrity compromised |
+| 4 – <6 | 🔴 Heavily damaged — Barely holding together |
+| 2 – <4 | 🔴 Critical — On the verge of breaking |
+| 0 – <2 | ⚫ Destroyed — Beyond repair |
 
 ---
 
@@ -99,19 +118,22 @@ Players **cannot** see the hidden fields section. The template uses `{{#if isGM}
 module/data/item/equipment-data.mjs    → createNWOEquipmentData factory function
 module/data/_module.mjs                → Barrel export
 module/no-way-out.mjs                  → Registers data model + preloads partial
+module/hooks.mjs                       → renderItemSheet5e hook injects HTML into Description tab
+module/utils/durability-state.mjs      → getDurabilityState() and getDurabilityColorClass() helpers
 module/config.mjs                      → NWO.FIELDS, NWO.DEFAULTS constants
-templates/items/details/nwo-details-equipment.hbs  → GM-only fieldset partial
-lang/en.json                           → English labels & hints
-lang/pt-BR.json                        → Portuguese labels & hints
-styles/no-way-out.css                  → .nwo-hidden-fields styling
+templates/items/description/nwo-description-equipment.hbs  → Condition section template (GM + Player views)
+lang/en.json                           → English labels, hints & durability states
+lang/pt-BR.json                        → Portuguese labels, hints & durability states
+styles/no-way-out.css                  → .nwo-hidden-fields, .nwo-condition-display, durability color classes
 ```
 
 ### Registration Flow
 
 1. **`init` hook** fires → `_registerConfig()` calls `createNWOEquipmentData(CONFIG.Item.dataModels.equipment)` and replaces `CONFIG.Item.dataModels.equipment` with the resulting `NWOEquipmentData` class.
-2. **`init` hook** fires → `_preloadPartials()` registers the `nwo.details-equipment-nwo` Handlebars partial.
-3. When an equipment item sheet renders, `NWOEquipmentData.getSheetData()` pushes `"nwo.details-equipment-nwo"` into `context.parts`.
-4. The `details.hbs` template iterates over `parts` and renders each partial, including the NWO one.
+2. **`init` hook** fires → `_preloadPartials()` registers the `nwo.description-equipment-nwo` Handlebars partial.
+3. **`renderItemSheet5e` hook** fires → `_onRenderItemSheet()` detects equipment items and injects the NWO condition section into the **Description tab**.
+4. For **GM users**: the section renders editable `formField` inputs for Hardness and Durability.
+5. For **Player users**: the section renders a read-only text describing the item's condition (e.g., "Pristine", "Damaged", "Critical").
 
 ### Key Design Decisions
 
@@ -119,13 +141,23 @@ styles/no-way-out.css                  → .nwo-hidden-fields styling
 |---|---|
 | Subclass via factory function | `CONFIG.Item.dataModels.equipment` is only available after system `init` hook, so we use a factory function to create the subclass at the right time |
 | Replace `CONFIG.Item.dataModels.equipment` | All equipment items get fields automatically; no new sub-type needed |
-| GM-only visibility | Fields are "hidden" from players per the feature requirement |
+| Inject via `renderItemSheet5e` hook | The Description tab doesn't use the `parts` system, so we inject HTML directly via a render hook |
+| GM sees editable fields, Player sees condition text | GMs can modify hardness/durability values; players only see a descriptive text of the item's condition |
 | Float fields (`integer: false`) | Allows granular values like 0.5, 1.7, 7.3 |
 | `_migrateData` override | Explicit handling of legacy items without these fields |
+| Durability state mapping | Maps numeric durability (0–10) to descriptive text using thresholds |
 
-### Scope
+### Durability State Mapping
 
-Currently, Hardness and Durability are only added to **Equipment** items. Other item types (weapons, consumables, tools, etc.) are not affected. This can be extended in the future by creating similar subclasses for other item types.
+| Durability Range | State (EN) | State (PT-BR) | CSS Class |
+|---|---|---|---|
+| 10 | Pristine — No visible wear | Impecável — Sem desgaste visível | `nwo-durability-pristine` |
+| 9.5 – <10 | Light scratches — Minor cosmetic damage | Leves arranhões — Danos cosméticos menores | `nwo-durability-light` |
+| 8 – <9.5 | Worn — Showing signs of use | Desgastado — Apresentando sinais de uso | `nwo-durability-worn` |
+| 6 – <8 | Damaged — Structural integrity compromised | Danificado — Integridade estrutural comprometida | `nwo-durability-damaged` |
+| 4 – <6 | Heavily damaged — Barely holding together | Muito danificado — Apenas se segurando | `nwo-durability-heavy` |
+| 2 – <4 | Critical — On the verge of breaking | Crítico — Prestes a quebrar | `nwo-durability-critical` |
+| 0 – <2 | Destroyed — Beyond repair | Destruído — Irreparável | `nwo-durability-destroyed` |
 
 ---
 

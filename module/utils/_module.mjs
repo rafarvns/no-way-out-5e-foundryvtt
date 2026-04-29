@@ -11,3 +11,4 @@
 
 // Register your utility functions here as they are created:
 // export { default as myHelper } from "./my-helper.mjs";
+export { getDurabilityState, getDurabilityColorClass } from "./durability-state.mjs";

@@ -84,12 +84,12 @@ function _registerConfig() {
 /**
  * Preload Handlebars partials for the module.
  * Partials are registered with a key derived from the file name,
- * e.g. "nwo.details-equipment-nwo" for nwo-details-equipment.hbs.
+ * e.g. "nwo.description-equipment-nwo" for nwo-description-equipment.hbs.
  * @private
  */
 function _preloadPartials() {
   const partials = {
-    "nwo.details-equipment-nwo": `modules/${NWO.ID}/templates/items/details/nwo-details-equipment.hbs`
+    "nwo.description-equipment-nwo": `modules/${NWO.ID}/templates/items/description/nwo-description-equipment.hbs`
   };
   foundry.applications.handlebars.loadTemplates(partials);
   console.log(`${NWO.ID} | Preloaded ${Object.keys(partials).length} partials`);

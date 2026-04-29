@@ -71,7 +71,18 @@
     },
 
     "Equipment": {
-      "HiddenFields": "No Way Out — Campos Ocultos"
+      "HiddenFields": "No Way Out — Campos Ocultos",
+      "ConditionSection": "No Way Out — Condição"
+    },
+
+    "DurabilityState": {
+      "Pristine": "Impecável — Sem desgaste visível",
+      "LightScratches": "Leves arranhões — Danos cosméticos menores",
+      "Worn": "Desgastado — Apresentando sinais de uso",
+      "Damaged": "Danificado — Integridade estrutural comprometida",
+      "HeavilyDamaged": "Muito danificado — Apenas se segurando",
+      "Critical": "Crítico — Prestes a quebrar",
+      "Destroyed": "Destruído — Irreparável"
     }
   }
 }

@@ -294,6 +294,120 @@
   width: 5em;
   text-align: center;
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Equipment Condition (Description Tab)                                      */
+/* -------------------------------------------------------------------------- */
+
+/* --- GM View (inside description tab) --- */
+.nwo-equipment-condition .nwo-hidden-fields {
+  border: 1px solid var(--nwo-color-primary);
+  border-radius: var(--nwo-border-radius);
+  margin-bottom: var(--nwo-space-md);
+  padding: var(--nwo-space-sm) var(--nwo-space-md);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 0, 0, 0.05) 0%,
+    rgba(42, 42, 42, 0.3) 100%
+  );
+}
+
+.nwo-equipment-condition .nwo-hidden-fields > legend {
+  color: var(--nwo-color-primary);
+  font-family: var(--nwo-font-heading);
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 0 var(--nwo-space-sm);
+}
+
+.nwo-equipment-condition .nwo-hidden-fields .form-group.split-group {
+  align-items: flex-start;
+}
+
+.nwo-equipment-condition .nwo-hidden-fields .form-fields {
+  gap: var(--nwo-space-lg);
+}
+
+.nwo-equipment-condition .nwo-hidden-fields .label-top label {
+  color: var(--nwo-color-text-muted);
+  font-family: var(--nwo-font-secondary);
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.nwo-equipment-condition .nwo-hidden-fields input[type="number"] {
+  width: 5em;
+  text-align: center;
+}
+
+/* --- Player View: Condition Display --- */
+.nwo-condition-display {
+  display: flex;
+  align-items: center;
+  gap: var(--nwo-space-md);
+  padding: var(--nwo-space-sm) var(--nwo-space-lg);
+  margin-bottom: var(--nwo-space-md);
+  border-radius: var(--nwo-border-radius);
+  border-left: 4px solid var(--nwo-color-border);
+  background: var(--nwo-color-bg-alt);
+  font-family: var(--nwo-font-secondary);
+  font-size: 0.95em;
+}
+
+.nwo-condition-icon {
+  font-size: 1.2em;
+  opacity: 0.8;
+}
+
+.nwo-condition-text {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* --- Durability Color Classes --- */
+.nwo-durability-pristine {
+  border-left-color: #4caf50;
+  color: #81c784;
+}
+.nwo-durability-pristine .nwo-condition-icon { color: #4caf50; }
+
+.nwo-durability-light {
+  border-left-color: #8bc34a;
+  color: #aed581;
+}
+.nwo-durability-light .nwo-condition-icon { color: #8bc34a; }
+
+.nwo-durability-worn {
+  border-left-color: #ffc107;
+  color: #ffd54f;
+}
+.nwo-durability-worn .nwo-condition-icon { color: #ffc107; }
+
+.nwo-durability-damaged {
+  border-left-color: #ff9800;
+  color: #ffb74d;
+}
+.nwo-durability-damaged .nwo-condition-icon { color: #ff9800; }
+
+.nwo-durability-heavy {
+  border-left-color: #f44336;
+  color: #ef9a9a;
+}
+.nwo-durability-heavy .nwo-condition-icon { color: #f44336; }
+
+.nwo-durability-critical {
+  border-left-color: #b71c1c;
+  color: #e57373;
+}
+.nwo-durability-critical .nwo-condition-icon { color: #b71c1c; }
+
+.nwo-durability-destroyed {
+  border-left-color: #424242;
+  color: #757575;
+}
+.nwo-durability-destroyed .nwo-condition-icon { color: #424242; }
 .nwo-mt-lg { margin-top: var(--nwo-space-lg); }
 .nwo-mb-sm { margin-bottom: var(--nwo-space-sm); }
 .nwo-mb-md { margin-bottom: var(--nwo-space-md); }

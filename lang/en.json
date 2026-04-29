@@ -71,7 +71,18 @@
     },
 
     "Equipment": {
-      "HiddenFields": "No Way Out — Hidden Fields"
+      "HiddenFields": "No Way Out — Hidden Fields",
+      "ConditionSection": "No Way Out — Condition"
+    },
+
+    "DurabilityState": {
+      "Pristine": "Pristine — No visible wear",
+      "LightScratches": "Light scratches — Minor cosmetic damage",
+      "Worn": "Worn — Showing signs of use",
+      "Damaged": "Damaged — Structural integrity compromised",
+      "HeavilyDamaged": "Heavily damaged — Barely holding together",
+      "Critical": "Critical — On the verge of breaking",
+      "Destroyed": "Destroyed — Beyond repair"
     }
   }
 }

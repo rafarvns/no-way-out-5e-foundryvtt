@@ -1,0 +1,40 @@
+{{!--
+  No Way Out! - 5e
+  Equipment Description — Hardness & Durability Section
+
+  Renders in the Description tab of equipment items.
+  - GM: sees editable fields for hardness and durability
+  - Player: sees a read-only text describing the item's condition
+--}}
+<div class="nwo-equipment-condition" data-item-uuid="{{ item.uuid }}">
+    {{#if isGM}}
+    {{!-- GM View: Editable Fields --}}
+    <fieldset class="nwo-hidden-fields">
+        <legend>{{ localize "NWO.Equipment.ConditionSection" }}</legend>
+
+        <div class="form-group split-group">
+            <label>{{ localize "NWO.Equipment.ConditionSection" }}</label>
+            <div class="form-fields">
+
+                {{!-- Hardness --}}
+                {{ formField fields.hardness value=source.hardness step=0.1
+                             label="NWO.Fields.Hardness.Label" localize=true
+                             classes="label-top" rootId=partId }}
+
+                {{!-- Durability --}}
+                {{ formField fields.durability value=source.durability step=0.1
+                             label="NWO.Fields.Durability.Label" localize=true
+                             classes="label-top" rootId=partId }}
+            </div>
+        </div>
+    </fieldset>
+    {{else}}
+    {{!-- Player View: Read-Only Condition Text --}}
+    <div class="nwo-condition-display {{ durabilityColorClass }}">
+        <span class="nwo-condition-icon">
+            <i class="fas fa-shield-halved"></i>
+        </span>
+        <span class="nwo-condition-text">{{ durabilityStateText }}</</span>
+    </div>
+    {{/if}}
+</div>
